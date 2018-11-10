@@ -26,8 +26,7 @@ def get_grid(data):
 
 
 
-df = pd.read_csv('C:/Users/Alexandra/Anaconda3/Scripts/machine learning/adult_data.txt',  # Это то, куда вы скачали файл
-                       sep=',')
+df = pd.read_csv('C:/Users/Alexandra/Anaconda3/Scripts/machine learning/adult_data.txt', sep=',')
 df.columns = ['age', 'workclass', 'fnlwgt', 'education', 'education-num', 'marital-status', 'occupation','relationship', 'race', 'sex', 'capital-gain','capital-loss', 'hours-per-week', 'native-country', 'result']
 df1 = df.copy()
 df1 = df1.drop('result', 1)
