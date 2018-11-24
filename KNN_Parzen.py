@@ -24,7 +24,10 @@ def get_grid(data):
     return np.meshgrid(np.arange(x_min, x_max, 0.01), np.arange(y_min, y_max, 0.01))
 
 
-df = pd.read_csv('C:/Users/Alexandra/Anaconda3/Scripts/machine learning/adult_data.txt', sep=',')
+
+
+df = pd.read_csv('C:/Users/Alexandra/Anaconda3/Scripts/machine learning/adult_data.txt',  # Это то, куда вы скачали файл
+                       sep=',')
 df.columns = ['age', 'workclass', 'fnlwgt', 'education', 'education-num', 'marital-status', 'occupation','relationship', 'race', 'sex', 'capital-gain','capital-loss', 'hours-per-week', 'native-country', 'result']
 df1 = df.copy()
 df1 = df1.drop('result', 1)
@@ -54,7 +57,13 @@ knn.fit(X_train, y_train)
 knn_pred = knn.predict(X_holdout)
 #knn1_pred = knn1.predict(X_holdout)
 print(accuracy_score(y_holdout, knn_pred))
-#print(accuracy_score(y_holdout, knn1_pred)) 
+#print(accuracy_score(y_holdout, knn1_pred))
+xx, yy = get_grid(X_train)
+predicted = knn.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
+plt.pcolormesh(xx, yy, predicted, cmap='autumn')
+plt.scatter(X_train[:, 0], X_train[:, 1], c=y_train, s=100, 
+cmap='autumn', edgecolors='black', linewidth=1.5);
+plt.title('Easy task, kNN. Not bad');
 #knn_pipe = Pipeline([('scaler', StandardScaler()), ('knn', KNeighborsClassifier(n_jobs=-1))])
 #knn_params = {'knn__n_neighbors': range(1, ???)}
 #knn_grid = GridSearchCV(knn_pipe, knn_params, cv = 5, n_jobs= -1, verbose=True)
